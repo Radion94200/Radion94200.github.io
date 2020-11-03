@@ -3,6 +3,21 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://www.radion.fr/blog/test/</loc>
+    <lastmod>2020-11-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.radion.fr/blog/</loc>
+    <lastmod>2020-11-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.radion.fr/</loc>
+    <lastmod>2020-11-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://www.radion.fr/write-ups/ecw_fdtd/</loc>
     <lastmod>2020-10-31T00:00:00+00:00</lastmod>
   </url>
@@ -13,31 +28,12 @@
   </url>
   
   <url>
-    <loc>https://www.radion.fr/</loc>
-    <lastmod>2020-10-31T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://www.radion.fr/write-ups/</loc>
     <lastmod>2020-10-31T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.radion.fr/about/</loc>
-  </url>
-  
-  <url>
-    <loc>https://www.radion.fr/blog/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.radion.fr/blog/test/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.radion.fr/blog/test/test2/</loc>
   </url>
   
   <url>
