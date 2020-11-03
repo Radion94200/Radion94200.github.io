@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="author" content="Radion">
+    <meta name="description" content="http://www.radion.fr">
+    <meta name="keywords" content="blog,developer,personal,security">
+
+    <meta property="og:site_name" content="Radion">
+    <meta property="og:title" content="
+  [ECW Quals 2020] [MISC] From Dusk Till Down - Radion
+">
+    <meta property="og:description" content="">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="http://www.radion.fr/write-ups/ecw_fdtd/">
+    <meta property="og:image" content="http://www.radion.fr">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="http://www.radion.fr/write-ups/ecw_fdtd/">
+    <meta name="twitter:image" content="http://www.radion.fr">
+
+    <base href="http://www.radion.fr/write-ups/ecw_fdtd/">
+    <title>
+  [ECW Quals 2020] [MISC] From Dusk Till Down - Radion
+</title>
+
+    <link rel="canonical" href="http://www.radion.fr/write-ups/ecw_fdtd/">
+    
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    
+    <link  rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Mono:400,700">
+    <link rel="stylesheet" href="/css/normalize.min.css">
+    <link rel="stylesheet" href="/css/style.min.css">
+
+    
+
+    
+
+    <link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/images/favicon-16x16.png" sizes="16x16">
+
+    
+      <link rel="alternate" href="http://www.radion.fr/index.xml" type="application/rss+xml" title="Radion">
+      <link href="http://www.radion.fr/index.xml" rel="feed" type="application/rss+xml" title="Radion" />
+    
+
+    <meta name="generator" content="Hugo 0.77.0" />
+  </head>
+
+  <body class="">
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="/">Radion</a>
+    <input type="checkbox" id="menu-control"/>
+    <label class="menu-mobile  float-right " for="menu-control">
+      <span class="btn-mobile  float-right ">&#9776;</span>
+      <ul class="navigation-list">
+        
+          
+            <li class="navigation-item  align-center ">
+              <a class="navigation-link" href="http://www.radion.fr/blog">Blog</a>
+            </li>
+          
+            <li class="navigation-item  align-center ">
+              <a class="navigation-link" href="http://www.radion.fr/write-ups">Write-ups</a>
+            </li>
+          
+            <li class="navigation-item  align-center ">
+              <a class="navigation-link" href="http://www.radion.fr/about">About</a>
+            </li>
+          
+        
+        
+      </ul>
+    </label>
+  </section>
+</nav>
+
+
+      <div class="content">
+        
+  <section class="container page">
+  <article>
+    <header>
+      <h1>[ECW Quals 2020] [MISC] From Dusk Till Down</h1>
+    </header>
+
+    <h2 id="challenge-description">Challenge description</h2>
+<p>This challenge was part of the European Cyber Week Qualification.</p>
+<p><img src="/ecw/ecw-fdtd.png" alt="Challenge description"></p>
+<p>This goal of this challenge is to find the next number which must be print.</p>
+<h2 id="solution">Solution</h2>
+<p>After some researches on Google to understand the title of the challenge, it appears that&rsquo;s the name of a film. On the wikipedia page in the <code>synopsis</code>part there is a link with Twister. In programmation, twister refers to the mersenne twister generator.<br>
+The advantage of this number generator is that it&rsquo;s a pseudo random generator. So we can predict the next number.</p>
+<p><strong>ATTENTION</strong> keep the ssh session open during the operation else the seed will be different and we need to start again.<br>
+We connect in ssh to the challenge. Then we launch the challenge. It asks us a number to generate a set of values. I take 10 and put them in a file <code>input.txt</code>. Once these values are generated, we need to find a mersenne generator to brute force the seed:<br>
+We can use this repo: <a href="https://github.com/hyprwired/untwister">untwister</a>.<br>
+Then with the following command we can brute force the seed:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">./untwister -i input.txt -d 1
+</code></pre></div><p>It takes a long time (~10 min).<br>
+Once the seed is find, we can generate the list of numbers create with this seed. The command is:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">./untwister -g 6706650
+</code></pre></div><p>Then the list appear. As I asked 10 numbers, I take the next one (29732694) and send it on the ssh.<br>
+Catch the flag and it&rsquo;s done</p>
+
+  </article>
+</section>
+
+
+      </div>
+      
+        <footer class="footer">
+  <section class="container">
+    
+      <div class="sns-shares sp-sns-shares">
+        
+          <a class="sns-share twitter-share" href="https://twitter.com/intent/tweet?original_referer=http%3a%2f%2fwww.radion.fr%2fwrite-ups%2fecw_fdtd%2f&ref_src=twsrc%5Etfw&text=%5bECW%20Quals%202020%5d%20%5bMISC%5d%20From%20Dusk%20Till%20Down Radion&tw_p=tweetbutton&url=http%3a%2f%2fwww.radion.fr%2fwrite-ups%2fecw_fdtd%2f"><i class="fab fa-twitter"></i></a>
+        
+        
+        
+        
+          <a class="sns-share line-share" href="https://social-plugins.line.me/lineit/share?url=http%3a%2f%2fwww.radion.fr%2fwrite-ups%2fecw_fdtd%2f"><i class="fab fa-line"></i></a>
+        
+        
+          <a class="sns-share linkedIn-share" href="https://www.linkedin.com/sharing/share-offsite/?url=http%3a%2f%2fwww.radion.fr%2fwrite-ups%2fecw_fdtd%2f"><i class="fab fa-linkedin"></i></a>
+        
+      </div>
+    
+    
+     © 2020    ·  Powered by <a href="https://gohugo.io/">Hugo</a> & <a href="https://github.com/naro143/hugo-coder-portfolio">CoderPortfolio</a>. 
+
+  </section>
+</footer>
+<div class="fixed-bar">
+  <section class="container">
+    
+    
+      <div class="sns-shares pc-sns-shares">
+        
+          <a class="sns-share twitter-share" href="https://twitter.com/intent/tweet?original_referer=http%3a%2f%2fwww.radion.fr%2fwrite-ups%2fecw_fdtd%2f&ref_src=twsrc%5Etfw&text=%5bECW%20Quals%202020%5d%20%5bMISC%5d%20From%20Dusk%20Till%20Down Radion&tw_p=tweetbutton&url=http%3a%2f%2fwww.radion.fr%2fwrite-ups%2fecw_fdtd%2f"><i class="fab fa-twitter"></i></a>
+        
+        
+        
+        
+          <a class="sns-share line-share" href="https://social-plugins.line.me/lineit/share?url=http%3a%2f%2fwww.radion.fr%2fwrite-ups%2fecw_fdtd%2f"><i class="fab fa-line"></i></a>
+        
+        
+          <a class="sns-share linkedIn-share" href="https://www.linkedin.com/sharing/share-offsite/?url=http%3a%2f%2fwww.radion.fr%2fwrite-ups%2fecw_fdtd%2f"><i class="fab fa-linkedin"></i></a>
+        
+      </div>
+    
+  </section>
+</div>
+
+      
+    </main>
+
+    
+
+  <script src="/js/app.js"></script>
+  
+  </body>
+</html>
